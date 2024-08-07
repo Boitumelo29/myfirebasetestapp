@@ -2,14 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myfirebasetestapp/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,8 +23,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -43,7 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
@@ -88,9 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
               _isLoading
                   ? CircularProgressIndicator()
                   : ElevatedButton(
-                onPressed: _login,
-                child: Text('Login'),
-              ),
+                      onPressed: _login,
+                      child: Text('Login'),
+                    ),
             ],
           ),
         ),
