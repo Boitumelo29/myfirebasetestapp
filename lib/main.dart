@@ -208,6 +208,8 @@ class _LoginScreenState extends State<LoginScreen> {
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final User? user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -221,7 +223,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text(""),
+        child: user != null ? Text(user.email ?? 'No email') : Text('No user'),
       ),
     );
   }
